@@ -9,11 +9,11 @@
 StudentDashboard::StudentDashboard(Student *s, CourseManager *cm, QWidget *parent)
     : QMainWindow(parent), student(s), courseManager(cm) {
 
-    setWindowTitle("UCMS - Student Dashboard");
+    setWindowTitle("AIMS - Student Dashboard");
     setMinimumSize(800, 550);
 
     QWidget *central = new QWidget(this);
-    central->setStyleSheet("background-color: #0f1923;");
+    central->setStyleSheet("background-color: #1C1C1A;");
     QHBoxLayout *mainLayout = new QHBoxLayout(central);
     mainLayout->setSpacing(0);
     mainLayout->setContentsMargins(0, 0, 0, 0);
@@ -21,15 +21,15 @@ StudentDashboard::StudentDashboard(Student *s, CourseManager *cm, QWidget *paren
     // ── Sidebar ──
     QWidget *sidebar = new QWidget();
     sidebar->setFixedWidth(200);
-    sidebar->setStyleSheet("background-color: #111d2b;");
+    sidebar->setStyleSheet("background-color: #252523;");
     QVBoxLayout *sideLayout = new QVBoxLayout(sidebar);
     sideLayout->setSpacing(6);
     sideLayout->setContentsMargins(12, 20, 12, 20);
 
-    QLabel *logo = new QLabel("UCMS");
-    logo->setStyleSheet("color: #4e9eff; font-size: 22px; font-weight: bold; padding: 10px 0;");
+    QLabel *logo = new QLabel("AIMS");
+    logo->setStyleSheet("color: #C8B89A; font-size: 22px; font-weight: Sans; padding: 10px 0;");
     QLabel *role = new QLabel("Student Portal");
-    role->setStyleSheet("color: #5a7a99; font-size: 11px; margin-bottom: 20px;");
+    role->setStyleSheet("color: #8A8478; font-size: 11px; margin-bottom: 20px;");
 
     QPushButton *btnHome       = makeNavButton("🏠  Home");
     QPushButton *btnTranscript = makeNavButton("📋  Transcript");
@@ -37,8 +37,7 @@ StudentDashboard::StudentDashboard(Student *s, CourseManager *cm, QWidget *paren
     QPushButton *btnRegister   = makeNavButton("➕  Register Course");
     QPushButton *btnDrop       = makeNavButton("➖  Drop Course");
     QPushButton *btnLogout     = makeNavButton("🚪  Logout");
-    btnLogout->setStyleSheet(btnLogout->styleSheet() +
-                             "color: #ff6b6b;");
+    btnLogout->setStyleSheet(btnLogout->styleSheet() + "color: #C0745A;");
 
     sideLayout->addWidget(logo);
     sideLayout->addWidget(role);
@@ -73,42 +72,40 @@ StudentDashboard::StudentDashboard(Student *s, CourseManager *cm, QWidget *paren
 QPushButton* StudentDashboard::makeNavButton(const QString &text) {
     QPushButton *btn = new QPushButton(text);
     btn->setStyleSheet(
-        "QPushButton { background: transparent; color: #a0b8cc; "
+        "QPushButton { background: transparent; color: #8A8478; "
         "text-align: left; padding: 10px 12px; border-radius: 6px; font-size: 13px; }"
-        "QPushButton:hover { background: #1a2d3d; color: #ffffff; }"
+        "QPushButton:hover { background: #3A3A36; color: #F0EDE3; }"
         );
     return btn;
 }
 
 QWidget* StudentDashboard::makeHomePage() {
     QWidget *page = new QWidget();
-    page->setStyleSheet("background-color: #0f1923;");
+    page->setStyleSheet("background-color: #1C1C1A;");
     QVBoxLayout *layout = new QVBoxLayout(page);
     layout->setContentsMargins(30, 30, 30, 30);
     layout->setSpacing(16);
 
     QLabel *welcome = new QLabel(QString("Welcome back, %1")
                                      .arg(QString::fromStdString(student->getName())));
-    welcome->setStyleSheet("color: #ffffff; font-size: 24px; font-weight: bold;");
+    welcome->setStyleSheet("color: #F0EDE3; font-size: 24px; font-weight: bold;");
 
     QLabel *sub = new QLabel(QString("Student ID: %1")
                                  .arg(QString::fromStdString(student->getStudentID())));
-    sub->setStyleSheet("color: #5a7a99; font-size: 13px;");
+    sub->setStyleSheet("color: #8A8478; font-size: 13px;");
 
-    // Stats row
     QHBoxLayout *stats = new QHBoxLayout();
     stats->setSpacing(16);
 
     auto makeCard = [](const QString &title, const QString &value) {
         QWidget *card = new QWidget();
-        card->setStyleSheet(
-            "background-color: #111d2b; border-radius: 10px; padding: 10px;");
+        card->setStyleSheet("background-color: #252523; border-radius: 5px; padding: 5px;");
         card->setFixedHeight(90);
         QVBoxLayout *cl = new QVBoxLayout(card);
         QLabel *t = new QLabel(title);
-        t->setStyleSheet("color: #5a7a99; font-size: 11px;");
+        t->setStyleSheet("color: #8A8478; font-size: 11px;");
         QLabel *v = new QLabel(value);
-        v->setStyleSheet("color: #4e9eff; font-size: 26px; font-weight: bold;");
+        v->setStyleSheet("color: #C8B89A; font-size: 26px; font-weight: bold;");
         cl->addWidget(t);
         cl->addWidget(v);
         return card;
@@ -132,21 +129,21 @@ QWidget* StudentDashboard::makeHomePage() {
 
 QWidget* StudentDashboard::makeTranscriptPage() {
     QWidget *page = new QWidget();
-    page->setStyleSheet("background-color: #0f1923;");
+    page->setStyleSheet("background-color: #1C1C1A;");
     QVBoxLayout *layout = new QVBoxLayout(page);
     layout->setContentsMargins(30, 30, 30, 30);
     layout->setSpacing(16);
 
     QLabel *title = new QLabel("Academic Transcript");
-    title->setStyleSheet("color: #ffffff; font-size: 22px; font-weight: bold;");
+    title->setStyleSheet("color: #F0EDE3; font-size: 22px; font-weight: bold;");
 
     QTableWidget *table = new QTableWidget();
     table->setColumnCount(3);
     table->setHorizontalHeaderLabels({"Course ID", "Course Name", "Status"});
     table->setStyleSheet(
-        "QTableWidget { background-color: #111d2b; color: #c0d0e0; "
-        "gridline-color: #1a2d3d; border: none; font-size: 13px; }"
-        "QHeaderView::section { background-color: #0d1821; color: #4e9eff; "
+        "QTableWidget { background-color: #252523; color: #F0EDE3; "
+        "gridline-color: #3A3A36; border: none; font-size: 13px; }"
+        "QHeaderView::section { background-color: #1C1C1A; color: #C8B89A; "
         "padding: 8px; border: none; font-weight: bold; }"
         "QTableWidget::item { padding: 8px; }"
         );
@@ -167,7 +164,7 @@ QWidget* StudentDashboard::makeTranscriptPage() {
 
     QLabel *gpaLabel = new QLabel(
         QString("Cumulative GPA: %1").arg(student->getGPA(), 0, 'f', 2));
-    gpaLabel->setStyleSheet("color: #4e9eff; font-size: 15px; font-weight: bold;");
+    gpaLabel->setStyleSheet("color: #C8B89A; font-size: 15px; font-weight: bold;");
 
     layout->addWidget(title);
     layout->addWidget(table);
@@ -177,21 +174,21 @@ QWidget* StudentDashboard::makeTranscriptPage() {
 
 QWidget* StudentDashboard::makeSchedulePage() {
     QWidget *page = new QWidget();
-    page->setStyleSheet("background-color: #0f1923;");
+    page->setStyleSheet("background-color: #1C1C1A;");
     QVBoxLayout *layout = new QVBoxLayout(page);
     layout->setContentsMargins(30, 30, 30, 30);
     layout->setSpacing(16);
 
     QLabel *title = new QLabel("My Schedule");
-    title->setStyleSheet("color: #ffffff; font-size: 22px; font-weight: bold;");
+    title->setStyleSheet("color: #F0EDE3; font-size: 22px; font-weight: bold;");
 
     QTableWidget *table = new QTableWidget();
     table->setColumnCount(3);
     table->setHorizontalHeaderLabels({"Course ID", "Course Name", "Schedule"});
     table->setStyleSheet(
-        "QTableWidget { background-color: #111d2b; color: #c0d0e0; "
-        "gridline-color: #1a2d3d; border: none; font-size: 13px; }"
-        "QHeaderView::section { background-color: #0d1821; color: #4e9eff; "
+        "QTableWidget { background-color: #252523; color: #F0EDE3; "
+        "gridline-color: #3A3A36; border: none; font-size: 13px; }"
+        "QHeaderView::section { background-color: #1C1C1A; color: #C8B89A; "
         "padding: 8px; border: none; font-weight: bold; }"
         "QTableWidget::item { padding: 8px; }"
         );
@@ -219,24 +216,24 @@ QWidget* StudentDashboard::makeSchedulePage() {
 
 QWidget* StudentDashboard::makeRegisterPage() {
     QWidget *page = new QWidget();
-    page->setStyleSheet("background-color: #0f1923;");
+    page->setStyleSheet("background-color: #1C1C1A;");
     QVBoxLayout *layout = new QVBoxLayout(page);
     layout->setContentsMargins(30, 30, 30, 30);
     layout->setSpacing(14);
 
     QLabel *title = new QLabel("Register for a Course");
-    title->setStyleSheet("color: #ffffff; font-size: 22px; font-weight: bold;");
+    title->setStyleSheet("color: #F0EDE3; font-size: 22px; font-weight: bold;");
 
     QLabel *avail = new QLabel("Available Courses:");
-    avail->setStyleSheet("color: #5a7a99; font-size: 13px;");
+    avail->setStyleSheet("color: #8A8478; font-size: 13px;");
 
     QTableWidget *table = new QTableWidget();
     table->setColumnCount(4);
     table->setHorizontalHeaderLabels({"ID", "Name", "Credits", "Seats Left"});
     table->setStyleSheet(
-        "QTableWidget { background-color: #111d2b; color: #c0d0e0; "
-        "gridline-color: #1a2d3d; border: none; font-size: 13px; }"
-        "QHeaderView::section { background-color: #0d1821; color: #4e9eff; "
+        "QTableWidget { background-color: #252523; color: #F0EDE3; "
+        "gridline-color: #3A3A36; border: none; font-size: 13px; }"
+        "QHeaderView::section { background-color: #1C1C1A; color: #C8B89A; "
         "padding: 8px; border: none; font-weight: bold; }"
         "QTableWidget::item { padding: 8px; }"
         );
@@ -260,12 +257,12 @@ QWidget* StudentDashboard::makeRegisterPage() {
     registerCourseInput = new QLineEdit();
     registerCourseInput->setPlaceholderText("Enter Course ID to register");
     registerCourseInput->setStyleSheet(
-        "background-color: #111d2b; color: #ffffff; border: 1px solid #1a2d3d; "
+        "background-color: #252523; color: #F0EDE3; border: 1px solid #3A3A36; "
         "border-radius: 6px; padding: 8px; font-size: 13px;");
 
     QPushButton *btn = new QPushButton("Register");
     btn->setStyleSheet(
-        "background-color: #4e9eff; color: white; padding: 9px; "
+        "background-color: #C8B89A; color: #1C1C1A; padding: 9px; "
         "border-radius: 6px; font-size: 13px; font-weight: bold;");
 
     registerStatus = new QLabel("");
@@ -285,23 +282,23 @@ QWidget* StudentDashboard::makeRegisterPage() {
 
 QWidget* StudentDashboard::makeDropPage() {
     QWidget *page = new QWidget();
-    page->setStyleSheet("background-color: #0f1923;");
+    page->setStyleSheet("background-color: #1C1C1A;");
     QVBoxLayout *layout = new QVBoxLayout(page);
     layout->setContentsMargins(30, 30, 30, 30);
     layout->setSpacing(14);
 
     QLabel *title = new QLabel("Drop a Course");
-    title->setStyleSheet("color: #ffffff; font-size: 22px; font-weight: bold;");
+    title->setStyleSheet("color: #F0EDE3; font-size: 22px; font-weight: bold;");
 
     dropCourseInput = new QLineEdit();
     dropCourseInput->setPlaceholderText("Enter Course ID to drop");
     dropCourseInput->setStyleSheet(
-        "background-color: #111d2b; color: #ffffff; border: 1px solid #1a2d3d; "
+        "background-color: #252523; color: #F0EDE3; border: 1px solid #3A3A36; "
         "border-radius: 6px; padding: 8px; font-size: 13px;");
 
     QPushButton *btn = new QPushButton("Drop Course");
     btn->setStyleSheet(
-        "background-color: #ff6b6b; color: white; padding: 9px; "
+        "background-color: #C0745A; color: #F0EDE3; padding: 9px; "
         "border-radius: 6px; font-size: 13px; font-weight: bold;");
 
     dropStatus = new QLabel("");
@@ -326,18 +323,18 @@ void StudentDashboard::onRegisterClicked() {
     string cid = registerCourseInput->text().toStdString();
     Course *c  = courseManager->findCourse(cid);
     if (!c) {
-        registerStatus->setStyleSheet("color: #ff6b6b; font-size: 13px;");
+        registerStatus->setStyleSheet("color: #C0745A; font-size: 13px;");
         registerStatus->setText("Course not found.");
         return;
     }
     if (!c->isAvailable()) {
-        registerStatus->setStyleSheet("color: #ff6b6b; font-size: 13px;");
+        registerStatus->setStyleSheet("color: #C0745A; font-size: 13px;");
         registerStatus->setText("Course is full.");
         return;
     }
     student->registerForCourse(cid);
     c->addStudent(student->getStudentID());
-    registerStatus->setStyleSheet("color: #4e9eff; font-size: 13px;");
+    registerStatus->setStyleSheet("color: #C8B89A; font-size: 13px;");
     registerStatus->setText("Successfully registered for " +
                             QString::fromStdString(c->getCourseName()) + "!");
     registerCourseInput->clear();
@@ -350,14 +347,14 @@ void StudentDashboard::onDropClicked() {
     for (auto &e : enrolled) if (e == cid) { found = true; break; }
 
     if (!found) {
-        dropStatus->setStyleSheet("color: #ff6b6b; font-size: 13px;");
+        dropStatus->setStyleSheet("color: #C0745A; font-size: 13px;");
         dropStatus->setText("You are not enrolled in this course.");
         return;
     }
     student->dropCourse(cid);
     Course *c = courseManager->findCourse(cid);
     if (c) c->removeStudent(student->getStudentID());
-    dropStatus->setStyleSheet("color: #4e9eff; font-size: 13px;");
+    dropStatus->setStyleSheet("color: #C8B89A; font-size: 13px;");
     dropStatus->setText("Course dropped successfully.");
     dropCourseInput->clear();
 }

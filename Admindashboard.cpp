@@ -11,11 +11,11 @@ AdminDashboard::AdminDashboard(Admin *a, vector<Student> *sts,
                                QWidget *parent)
     : QMainWindow(parent), admin(a), students(sts), professors(profs), courseManager(cm) {
 
-    setWindowTitle("UCMS - Admin Dashboard");
+    setWindowTitle("AIMS - Admin Dashboard");
     setMinimumSize(900, 600);
 
     QWidget *central = new QWidget(this);
-    central->setStyleSheet("background-color: #0f1923;");
+    central->setStyleSheet("background-color: #1C1C1A;");
     QHBoxLayout *mainLayout = new QHBoxLayout(central);
     mainLayout->setSpacing(0);
     mainLayout->setContentsMargins(0, 0, 0, 0);
@@ -23,15 +23,15 @@ AdminDashboard::AdminDashboard(Admin *a, vector<Student> *sts,
     // ── Sidebar ──
     QWidget *sidebar = new QWidget();
     sidebar->setFixedWidth(210);
-    sidebar->setStyleSheet("background-color: #111d2b;");
+    sidebar->setStyleSheet("background-color: #252523;");
     QVBoxLayout *sideLayout = new QVBoxLayout(sidebar);
     sideLayout->setSpacing(6);
     sideLayout->setContentsMargins(12, 20, 12, 20);
 
-    QLabel *logo = new QLabel("UCMS");
-    logo->setStyleSheet("color: #4e9eff; font-size: 22px; font-weight: bold; padding: 10px 0;");
+    QLabel *logo = new QLabel("A I M S");
+    logo->setStyleSheet("color: #C8B89A; font-size: 22px; font-weight: sans; padding: 10px 0;");
     QLabel *role = new QLabel("Admin Portal");
-    role->setStyleSheet("color: #5a7a99; font-size: 11px; margin-bottom: 20px;");
+    role->setStyleSheet("color: #8A8478; font-size: 11px; margin-bottom: 20px;");
 
     QPushButton *btnHome     = makeNavButton("🏠  Home");
     QPushButton *btnStudents = makeNavButton("👥  View Students");
@@ -40,7 +40,7 @@ AdminDashboard::AdminDashboard(Admin *a, vector<Student> *sts,
     QPushButton *btnCourse   = makeNavButton("📚  Create Course");
     QPushButton *btnAssign   = makeNavButton("👨‍🏫  Assign Instructor");
     QPushButton *btnLogout   = makeNavButton("🚪  Logout");
-    btnLogout->setStyleSheet(btnLogout->styleSheet() + "color: #ff6b6b;");
+    btnLogout->setStyleSheet(btnLogout->styleSheet() + "color: #C0745A;");
 
     sideLayout->addWidget(logo);
     sideLayout->addWidget(role);
@@ -77,36 +77,36 @@ AdminDashboard::AdminDashboard(Admin *a, vector<Student> *sts,
 QPushButton* AdminDashboard::makeNavButton(const QString &text) {
     QPushButton *btn = new QPushButton(text);
     btn->setStyleSheet(
-        "QPushButton { background: transparent; color: #a0b8cc; "
+        "QPushButton { background: transparent; color: #8A8478; "
         "text-align: left; padding: 10px 12px; border-radius: 6px; font-size: 13px; }"
-        "QPushButton:hover { background: #1a2d3d; color: #ffffff; }"
+        "QPushButton:hover { background: #3A3A36; color: #F0EDE3; }"
         );
     return btn;
 }
 
 QWidget* AdminDashboard::makeHomePage() {
     QWidget *page = new QWidget();
-    page->setStyleSheet("background-color: #0f1923;");
+    page->setStyleSheet("background-color: #1C1C1A;");
     QVBoxLayout *layout = new QVBoxLayout(page);
     layout->setContentsMargins(30, 30, 30, 30);
     layout->setSpacing(16);
 
     QLabel *welcome = new QLabel("Admin Dashboard");
-    welcome->setStyleSheet("color: #ffffff; font-size: 24px; font-weight: bold;");
+    welcome->setStyleSheet("color: #F0EDE3; font-size: 24px; font-weight: bold;");
 
     QLabel *sub = new QLabel(QString("Logged in as: %1")
                                  .arg(QString::fromStdString(admin->getUsername())));
-    sub->setStyleSheet("color: #5a7a99; font-size: 13px;");
+    sub->setStyleSheet("color: #8A8478; font-size: 13px;");
 
     auto makeCard = [](const QString &title, const QString &value) {
         QWidget *card = new QWidget();
-        card->setStyleSheet("background-color: #111d2b; border-radius: 10px; padding: 10px;");
+        card->setStyleSheet("background-color: #252523; border-radius: 5px; padding: 5px;");
         card->setFixedHeight(90);
         QVBoxLayout *cl = new QVBoxLayout(card);
         QLabel *t = new QLabel(title);
-        t->setStyleSheet("color: #5a7a99; font-size: 11px;");
+        t->setStyleSheet("color: #8A8478; font-size: 11px;");
         QLabel *v = new QLabel(value);
-        v->setStyleSheet("color: #4e9eff; font-size: 26px; font-weight: bold;");
+        v->setStyleSheet("color: #C8B89A; font-size: 26px; font-weight: bold;");
         cl->addWidget(t);
         cl->addWidget(v);
         return card;
@@ -130,21 +130,21 @@ QWidget* AdminDashboard::makeHomePage() {
 
 QWidget* AdminDashboard::makeStudentsPage() {
     QWidget *page = new QWidget();
-    page->setStyleSheet("background-color: #0f1923;");
+    page->setStyleSheet("background-color: #1C1C1A;");
     QVBoxLayout *layout = new QVBoxLayout(page);
     layout->setContentsMargins(30, 30, 30, 30);
     layout->setSpacing(16);
 
     QLabel *title = new QLabel("All Students");
-    title->setStyleSheet("color: #ffffff; font-size: 22px; font-weight: bold;");
+    title->setStyleSheet("color: #F0EDE3; font-size: 22px; font-weight: bold;");
 
     QTableWidget *table = new QTableWidget();
     table->setColumnCount(4);
     table->setHorizontalHeaderLabels({"Student ID", "Name", "Email", "GPA"});
     table->setStyleSheet(
-        "QTableWidget { background-color: #111d2b; color: #c0d0e0; "
-        "gridline-color: #1a2d3d; border: none; font-size: 13px; }"
-        "QHeaderView::section { background-color: #0d1821; color: #4e9eff; "
+        "QTableWidget { background-color: #252523; color: #F0EDE3; "
+        "gridline-color: #3A3A36; border: none; font-size: 13px; }"
+        "QHeaderView::section { background-color: #1C1C1A; color: #C8B89A; "
         "padding: 8px; border: none; font-weight: bold; }"
         "QTableWidget::item { padding: 8px; }"
         );
@@ -171,19 +171,19 @@ QWidget* AdminDashboard::makeStudentsPage() {
 
 QWidget* AdminDashboard::makeAddStudentPage() {
     QWidget *page = new QWidget();
-    page->setStyleSheet("background-color: #0f1923;");
+    page->setStyleSheet("background-color: #1C1C1A;");
     QVBoxLayout *layout = new QVBoxLayout(page);
     layout->setContentsMargins(30, 30, 30, 30);
     layout->setSpacing(14);
 
     QLabel *title = new QLabel("Add New Student");
-    title->setStyleSheet("color: #ffffff; font-size: 22px; font-weight: bold;");
+    title->setStyleSheet("color: #F0EDE3; font-size: 22px; font-weight: bold;");
 
     auto makeField = [](const QString &ph) {
         QLineEdit *f = new QLineEdit();
         f->setPlaceholderText(ph);
         f->setStyleSheet(
-            "background-color: #111d2b; color: #ffffff; border: 1px solid #1a2d3d; "
+            "background-color: #252523; color: #F0EDE3; border: 1px solid #3A3A36; "
             "border-radius: 6px; padding: 8px; font-size: 13px;");
         return f;
     };
@@ -195,7 +195,7 @@ QWidget* AdminDashboard::makeAddStudentPage() {
 
     QPushButton *btn = new QPushButton("Add Student");
     btn->setStyleSheet(
-        "background-color: #4e9eff; color: white; padding: 9px; "
+        "background-color: #C8B89A; color: #1C1C1A; padding: 9px; "
         "border-radius: 6px; font-size: 13px; font-weight: bold;");
 
     addStudentStatus = new QLabel("");
@@ -216,23 +216,23 @@ QWidget* AdminDashboard::makeAddStudentPage() {
 
 QWidget* AdminDashboard::makeDeleteStudentPage() {
     QWidget *page = new QWidget();
-    page->setStyleSheet("background-color: #0f1923;");
+    page->setStyleSheet("background-color: #1C1C1A;");
     QVBoxLayout *layout = new QVBoxLayout(page);
     layout->setContentsMargins(30, 30, 30, 30);
     layout->setSpacing(14);
 
     QLabel *title = new QLabel("Delete Student");
-    title->setStyleSheet("color: #ffffff; font-size: 22px; font-weight: bold;");
+    title->setStyleSheet("color: #F0EDE3; font-size: 22px; font-weight: bold;");
 
     delStudentID = new QLineEdit();
     delStudentID->setPlaceholderText("Enter Student ID to delete");
     delStudentID->setStyleSheet(
-        "background-color: #111d2b; color: #ffffff; border: 1px solid #1a2d3d; "
+        "background-color: #252523; color: #F0EDE3; border: 1px solid #3A3A36; "
         "border-radius: 6px; padding: 8px; font-size: 13px;");
 
     QPushButton *btn = new QPushButton("Delete Student");
     btn->setStyleSheet(
-        "background-color: #ff6b6b; color: white; padding: 9px; "
+        "background-color: #C0745A; color: #F0EDE3; padding: 9px; "
         "border-radius: 6px; font-size: 13px; font-weight: bold;");
 
     delStudentStatus = new QLabel("");
@@ -250,19 +250,19 @@ QWidget* AdminDashboard::makeDeleteStudentPage() {
 
 QWidget* AdminDashboard::makeCreateCoursePage() {
     QWidget *page = new QWidget();
-    page->setStyleSheet("background-color: #0f1923;");
+    page->setStyleSheet("background-color: #1C1C1A;");
     QVBoxLayout *layout = new QVBoxLayout(page);
     layout->setContentsMargins(30, 30, 30, 30);
     layout->setSpacing(14);
 
     QLabel *title = new QLabel("Create New Course");
-    title->setStyleSheet("color: #ffffff; font-size: 22px; font-weight: bold;");
+    title->setStyleSheet("color: #F0EDE3; font-size: 22px; font-weight: bold;");
 
     auto makeField = [](const QString &ph) {
         QLineEdit *f = new QLineEdit();
         f->setPlaceholderText(ph);
         f->setStyleSheet(
-            "background-color: #111d2b; color: #ffffff; border: 1px solid #1a2d3d; "
+            "background-color: #252523; color: #F0EDE3; border: 1px solid #3A3A36; "
             "border-radius: 6px; padding: 8px; font-size: 13px;");
         return f;
     };
@@ -271,7 +271,7 @@ QWidget* AdminDashboard::makeCreateCoursePage() {
         s->setRange(min, max);
         s->setValue(def);
         s->setStyleSheet(
-            "background-color: #111d2b; color: #ffffff; border: 1px solid #1a2d3d; "
+            "background-color: #252523; color: #F0EDE3; border: 1px solid #3A3A36; "
             "border-radius: 6px; padding: 8px; font-size: 13px;");
         return s;
     };
@@ -284,13 +284,13 @@ QWidget* AdminDashboard::makeCreateCoursePage() {
     courseCapacity   = makeSpinBox(5, 200, 30);
 
     QLabel *lCredits  = new QLabel("Credit Hours:");
-    lCredits->setStyleSheet("color: #a0b8cc; font-size: 13px;");
+    lCredits->setStyleSheet("color: #8A8478; font-size: 13px;");
     QLabel *lCapacity = new QLabel("Capacity:");
-    lCapacity->setStyleSheet("color: #a0b8cc; font-size: 13px;");
+    lCapacity->setStyleSheet("color: #8A8478; font-size: 13px;");
 
     QPushButton *btn = new QPushButton("Create Course");
     btn->setStyleSheet(
-        "background-color: #4e9eff; color: white; padding: 9px; "
+        "background-color: #C8B89A; color: #1C1C1A; padding: 9px; "
         "border-radius: 6px; font-size: 13px; font-weight: bold;");
 
     createCourseStatus = new QLabel("");
@@ -315,29 +315,29 @@ QWidget* AdminDashboard::makeCreateCoursePage() {
 
 QWidget* AdminDashboard::makeAssignInstructorPage() {
     QWidget *page = new QWidget();
-    page->setStyleSheet("background-color: #0f1923;");
+    page->setStyleSheet("background-color: #1C1C1A;");
     QVBoxLayout *layout = new QVBoxLayout(page);
     layout->setContentsMargins(30, 30, 30, 30);
     layout->setSpacing(14);
 
     QLabel *title = new QLabel("Assign Instructor to Course");
-    title->setStyleSheet("color: #ffffff; font-size: 22px; font-weight: bold;");
+    title->setStyleSheet("color: #F0EDE3; font-size: 22px; font-weight: bold;");
 
     assignCourseID = new QLineEdit();
     assignCourseID->setPlaceholderText("Course ID (e.g. CS301)");
     assignCourseID->setStyleSheet(
-        "background-color: #111d2b; color: #ffffff; border: 1px solid #1a2d3d; "
+        "background-color: #252523; color: #F0EDE3; border: 1px solid #3A3A36; "
         "border-radius: 6px; padding: 8px; font-size: 13px;");
 
     assignProfID = new QLineEdit();
     assignProfID->setPlaceholderText("Professor ID (e.g. P001)");
     assignProfID->setStyleSheet(
-        "background-color: #111d2b; color: #ffffff; border: 1px solid #1a2d3d; "
+        "background-color: #252523; color: #F0EDE3; border: 1px solid #3A3A36; "
         "border-radius: 6px; padding: 8px; font-size: 13px;");
 
     QPushButton *btn = new QPushButton("Assign");
     btn->setStyleSheet(
-        "background-color: #4e9eff; color: white; padding: 9px; "
+        "background-color: #C8B89A; color: #1C1C1A; padding: 9px; "
         "border-radius: 6px; font-size: 13px; font-weight: bold;");
 
     assignStatus = new QLabel("");
@@ -361,19 +361,19 @@ void AdminDashboard::onAddStudentClicked() {
     string pwd   = addStudentPwd->text().toStdString();
 
     if (id.empty() || name.empty() || email.empty() || pwd.empty()) {
-        addStudentStatus->setStyleSheet("color: #ff6b6b; font-size: 13px;");
+        addStudentStatus->setStyleSheet("color: #C0745A; font-size: 13px;");
         addStudentStatus->setText("Please fill in all fields.");
         return;
     }
     for (auto &s : *students) {
         if (s.getStudentID() == id) {
-            addStudentStatus->setStyleSheet("color: #ff6b6b; font-size: 13px;");
+            addStudentStatus->setStyleSheet("color: #C0745A; font-size: 13px;");
             addStudentStatus->setText("Student ID already exists.");
             return;
         }
     }
     students->push_back(Student(id, name, email, pwd));
-    addStudentStatus->setStyleSheet("color: #4e9eff; font-size: 13px;");
+    addStudentStatus->setStyleSheet("color: #C8B89A; font-size: 13px;");
     addStudentStatus->setText("Student " + QString::fromStdString(name) + " added successfully.");
     addStudentID->clear(); addStudentName->clear();
     addStudentEmail->clear(); addStudentPwd->clear();
@@ -384,13 +384,13 @@ void AdminDashboard::onDeleteStudentClicked() {
     for (int i = 0; i < (int)students->size(); i++) {
         if ((*students)[i].getStudentID() == id) {
             students->erase(students->begin() + i);
-            delStudentStatus->setStyleSheet("color: #4e9eff; font-size: 13px;");
+            delStudentStatus->setStyleSheet("color: #C8B89A; font-size: 13px;");
             delStudentStatus->setText("Student deleted successfully.");
             delStudentID->clear();
             return;
         }
     }
-    delStudentStatus->setStyleSheet("color: #ff6b6b; font-size: 13px;");
+    delStudentStatus->setStyleSheet("color: #C0745A; font-size: 13px;");
     delStudentStatus->setText("Student ID not found.");
 }
 
@@ -403,17 +403,17 @@ void AdminDashboard::onCreateCourseClicked() {
     int    cap   = courseCapacity->value();
 
     if (cid.empty() || cname.empty()) {
-        createCourseStatus->setStyleSheet("color: #ff6b6b; font-size: 13px;");
+        createCourseStatus->setStyleSheet("color: #C0745A; font-size: 13px;");
         createCourseStatus->setText("Course ID and Name are required.");
         return;
     }
     if (courseManager->findCourse(cid)) {
-        createCourseStatus->setStyleSheet("color: #ff6b6b; font-size: 13px;");
+        createCourseStatus->setStyleSheet("color: #C0745A; font-size: 13px;");
         createCourseStatus->setText("Course ID already exists.");
         return;
     }
     courseManager->addCourse(Course(cid, cname, cred, cap, sched, instr));
-    createCourseStatus->setStyleSheet("color: #4e9eff; font-size: 13px;");
+    createCourseStatus->setStyleSheet("color: #C8B89A; font-size: 13px;");
     createCourseStatus->setText("Course " + QString::fromStdString(cname) + " created!");
     courseID->clear(); courseName->clear();
     courseSchedule->clear(); courseInstructor->clear();
@@ -425,20 +425,20 @@ void AdminDashboard::onAssignInstructorClicked() {
 
     Course *c = courseManager->findCourse(cid);
     if (!c) {
-        assignStatus->setStyleSheet("color: #ff6b6b; font-size: 13px;");
+        assignStatus->setStyleSheet("color: #C0745A; font-size: 13px;");
         assignStatus->setText("Course not found.");
         return;
     }
     Professor *found = nullptr;
     for (auto &p : *professors) if (p.getProfessorID() == pid) { found = &p; break; }
     if (!found) {
-        assignStatus->setStyleSheet("color: #ff6b6b; font-size: 13px;");
+        assignStatus->setStyleSheet("color: #C0745A; font-size: 13px;");
         assignStatus->setText("Professor not found.");
         return;
     }
     c->setInstructor(pid);
     found->assignCourse(cid);
-    assignStatus->setStyleSheet("color: #4e9eff; font-size: 13px;");
+    assignStatus->setStyleSheet("color: #C8B89A; font-size: 13px;");
     assignStatus->setText("Instructor assigned successfully.");
     assignCourseID->clear(); assignProfID->clear();
 }

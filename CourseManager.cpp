@@ -1,6 +1,4 @@
 #include "CourseManager.h"
-#include <iostream>
-
 using namespace std;
 
 void CourseManager::addCourse(Course course) {

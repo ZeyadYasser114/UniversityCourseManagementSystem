@@ -21,8 +21,8 @@ add_executable(UCMS
     Professor.h
     Admin.cpp
     Admin.h
-    UI.cpp
-    UI.h
+
+
     AuthenticationManager.cpp
     AuthenticationManager.h
     Studentdashboard.h

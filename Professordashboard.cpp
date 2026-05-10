@@ -9,11 +9,11 @@ ProfessorDashboard::ProfessorDashboard(Professor *p, CourseManager *cm,
                                        vector<Student> *sts, QWidget *parent)
     : QMainWindow(parent), professor(p), courseManager(cm), students(sts) {
 
-    setWindowTitle("UCMS - Professor Dashboard");
+    setWindowTitle("AIMS - Professor Dashboard");
     setMinimumSize(800, 550);
 
     QWidget *central = new QWidget(this);
-    central->setStyleSheet("background-color: #0f1923;");
+    central->setStyleSheet("background-color: #1C1C1A;");
     QHBoxLayout *mainLayout = new QHBoxLayout(central);
     mainLayout->setSpacing(0);
     mainLayout->setContentsMargins(0, 0, 0, 0);
@@ -21,22 +21,22 @@ ProfessorDashboard::ProfessorDashboard(Professor *p, CourseManager *cm,
     // ── Sidebar ──
     QWidget *sidebar = new QWidget();
     sidebar->setFixedWidth(200);
-    sidebar->setStyleSheet("background-color: #111d2b;");
+    sidebar->setStyleSheet("background-color: #252523;");
     QVBoxLayout *sideLayout = new QVBoxLayout(sidebar);
     sideLayout->setSpacing(6);
     sideLayout->setContentsMargins(12, 20, 12, 20);
 
-    QLabel *logo = new QLabel("UCMS");
-    logo->setStyleSheet("color: #4e9eff; font-size: 22px; font-weight: bold; padding: 10px 0;");
+    QLabel *logo = new QLabel("A I M S");
+    logo->setStyleSheet("color: #C8B89A; font-size: 22px; font-weight: Sans; padding: 10px 0;");
     QLabel *role = new QLabel("Professor Portal");
-    role->setStyleSheet("color: #5a7a99; font-size: 11px; margin-bottom: 20px;");
+    role->setStyleSheet("color: #8A8478; font-size: 11px; margin-bottom: 20px;");
 
     QPushButton *btnHome    = makeNavButton("🏠  Home");
     QPushButton *btnCourses = makeNavButton("📚  My Courses");
     QPushButton *btnGrades  = makeNavButton("✏️  Submit Grades");
     QPushButton *btnOffice  = makeNavButton("🕐  Office Hours");
     QPushButton *btnLogout  = makeNavButton("🚪  Logout");
-    btnLogout->setStyleSheet(btnLogout->styleSheet() + "color: #ff6b6b;");
+    btnLogout->setStyleSheet(btnLogout->styleSheet() + "color: #C0745A;");
 
     sideLayout->addWidget(logo);
     sideLayout->addWidget(role);
@@ -67,16 +67,16 @@ ProfessorDashboard::ProfessorDashboard(Professor *p, CourseManager *cm,
 QPushButton* ProfessorDashboard::makeNavButton(const QString &text) {
     QPushButton *btn = new QPushButton(text);
     btn->setStyleSheet(
-        "QPushButton { background: transparent; color: #a0b8cc; "
+        "QPushButton { background: transparent; color: #8A8478; "
         "text-align: left; padding: 10px 12px; border-radius: 6px; font-size: 13px; }"
-        "QPushButton:hover { background: #1a2d3d; color: #ffffff; }"
+        "QPushButton:hover { background: #3A3A36; color: #ffffff; }"
         );
     return btn;
 }
 
 QWidget* ProfessorDashboard::makeHomePage() {
     QWidget *page = new QWidget();
-    page->setStyleSheet("background-color: #0f1923;");
+    page->setStyleSheet("background-color: #1C1C1A;");
     QVBoxLayout *layout = new QVBoxLayout(page);
     layout->setContentsMargins(30, 30, 30, 30);
     layout->setSpacing(16);
@@ -88,17 +88,17 @@ QWidget* ProfessorDashboard::makeHomePage() {
     QLabel *dept = new QLabel(QString("Department: %1  |  ID: %2")
                                   .arg(QString::fromStdString(professor->getDepartment()))
                                   .arg(QString::fromStdString(professor->getProfessorID())));
-    dept->setStyleSheet("color: #5a7a99; font-size: 13px;");
+    dept->setStyleSheet("color: #8A8478; font-size: 13px;");
 
     auto makeCard = [](const QString &title, const QString &value) {
         QWidget *card = new QWidget();
-        card->setStyleSheet("background-color: #111d2b; border-radius: 10px; padding: 10px;");
+        card->setStyleSheet("background-color: #252523; border-radius: 5px; padding: 5px;");
         card->setFixedHeight(90);
         QVBoxLayout *cl = new QVBoxLayout(card);
         QLabel *t = new QLabel(title);
-        t->setStyleSheet("color: #5a7a99; font-size: 11px;");
+        t->setStyleSheet("color: #8A8478; font-size: 11px;");
         QLabel *v = new QLabel(value);
-        v->setStyleSheet("color: #4e9eff; font-size: 26px; font-weight: bold;");
+        v->setStyleSheet("color: #C8B89A; font-size: 26px; font-weight: bold;");
         cl->addWidget(t);
         cl->addWidget(v);
         return card;
@@ -120,7 +120,7 @@ QWidget* ProfessorDashboard::makeHomePage() {
 
 QWidget* ProfessorDashboard::makeCoursesPage() {
     QWidget *page = new QWidget();
-    page->setStyleSheet("background-color: #0f1923;");
+    page->setStyleSheet("background-color: #1C1C1A;");
     QVBoxLayout *layout = new QVBoxLayout(page);
     layout->setContentsMargins(30, 30, 30, 30);
     layout->setSpacing(16);
@@ -132,9 +132,9 @@ QWidget* ProfessorDashboard::makeCoursesPage() {
     table->setColumnCount(4);
     table->setHorizontalHeaderLabels({"Course ID", "Name", "Credits", "Enrolled"});
     table->setStyleSheet(
-        "QTableWidget { background-color: #111d2b; color: #c0d0e0; "
-        "gridline-color: #1a2d3d; border: none; font-size: 13px; }"
-        "QHeaderView::section { background-color: #0d1821; color: #4e9eff; "
+        "QTableWidget { background-color: #252523; color: #c0d0e0; "
+        "gridline-color: #3A3A36; border: none; font-size: 13px; }"
+        "QHeaderView::section { background-color: #1C1C1A; color: #C8B89A; "
         "padding: 8px; border: none; font-weight: bold; }"
         "QTableWidget::item { padding: 8px; }"
         );
@@ -163,7 +163,7 @@ QWidget* ProfessorDashboard::makeCoursesPage() {
 
 QWidget* ProfessorDashboard::makeGradesPage() {
     QWidget *page = new QWidget();
-    page->setStyleSheet("background-color: #0f1923;");
+    page->setStyleSheet("background-color: #1C1C1A;");
     QVBoxLayout *layout = new QVBoxLayout(page);
     layout->setContentsMargins(30, 30, 30, 30);
     layout->setSpacing(14);
@@ -175,7 +175,7 @@ QWidget* ProfessorDashboard::makeGradesPage() {
         QLineEdit *f = new QLineEdit();
         f->setPlaceholderText(ph);
         f->setStyleSheet(
-            "background-color: #111d2b; color: #ffffff; border: 1px solid #1a2d3d; "
+            "background-color: #252523; color: #ffffff; border: 1px solid #3A3A36; "
             "border-radius: 6px; padding: 8px; font-size: 13px;");
         return f;
     };
@@ -186,7 +186,7 @@ QWidget* ProfessorDashboard::makeGradesPage() {
 
     QPushButton *btn = new QPushButton("Submit Grade");
     btn->setStyleSheet(
-        "background-color: #4e9eff; color: white; padding: 9px; "
+        "background-color: #C8B89A; color: white; padding: 9px; "
         "border-radius: 6px; font-size: 13px; font-weight: bold;");
 
     gradeStatus = new QLabel("");
@@ -206,7 +206,7 @@ QWidget* ProfessorDashboard::makeGradesPage() {
 
 QWidget* ProfessorDashboard::makeOfficeHoursPage() {
     QWidget *page = new QWidget();
-    page->setStyleSheet("background-color: #0f1923;");
+    page->setStyleSheet("background-color: #1C1C1A;");
     QVBoxLayout *layout = new QVBoxLayout(page);
     layout->setContentsMargins(30, 30, 30, 30);
     layout->setSpacing(14);
@@ -217,12 +217,12 @@ QWidget* ProfessorDashboard::makeOfficeHoursPage() {
     officeHoursInput = new QLineEdit();
     officeHoursInput->setPlaceholderText("e.g. MW 2:00-4:00 PM, Room 305");
     officeHoursInput->setStyleSheet(
-        "background-color: #111d2b; color: #ffffff; border: 1px solid #1a2d3d; "
+        "background-color: #252523; color: #ffffff; border: 1px solid #3A3A36; "
         "border-radius: 6px; padding: 8px; font-size: 13px;");
 
     QPushButton *btn = new QPushButton("Update");
     btn->setStyleSheet(
-        "background-color: #4e9eff; color: white; padding: 9px; "
+        "background-color: #C8B89A; color: white; padding: 9px; "
         "border-radius: 6px; font-size: 13px; font-weight: bold;");
 
     officeStatus = new QLabel("");
@@ -245,12 +245,12 @@ void ProfessorDashboard::onSubmitGradeClicked() {
     string grade = gradeValue->text().toStdString();
 
     if (sid.empty() || cid.empty() || grade.empty()) {
-        gradeStatus->setStyleSheet("color: #ff6b6b; font-size: 13px;");
+        gradeStatus->setStyleSheet("color: #C0745A; font-size: 13px;");
         gradeStatus->setText("Please fill in all fields.");
         return;
     }
     professor->submitGrade(sid, cid, grade);
-    gradeStatus->setStyleSheet("color: #4e9eff; font-size: 13px;");
+    gradeStatus->setStyleSheet("color: #C8B89A; font-size: 13px;");
     gradeStatus->setText(QString("Grade %1 submitted for student %2 in %3.")
                              .arg(QString::fromStdString(grade))
                              .arg(QString::fromStdString(sid))
@@ -263,12 +263,12 @@ void ProfessorDashboard::onSubmitGradeClicked() {
 void ProfessorDashboard::onUpdateOfficeHoursClicked() {
     string hours = officeHoursInput->text().toStdString();
     if (hours.empty()) {
-        officeStatus->setStyleSheet("color: #ff6b6b; font-size: 13px;");
+        officeStatus->setStyleSheet("color: #C0745A; font-size: 13px;");
         officeStatus->setText("Please enter office hours.");
         return;
     }
     professor->updateOfficeHours(hours);
-    officeStatus->setStyleSheet("color: #4e9eff; font-size: 13px;");
+    officeStatus->setStyleSheet("color: #C8B89A; font-size: 13px;");
     officeStatus->setText("Office hours updated successfully.");
     officeHoursInput->clear();
 }
