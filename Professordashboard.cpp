@@ -347,3 +347,4 @@ void ProfessorDashboard::onUpdateOfficeHoursClicked() {
 }
 
 void ProfessorDashboard::onLogout() { close(); }
+//git

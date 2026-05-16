@@ -51,5 +51,5 @@ public:
     void setScholarshipStatus(bool v);
     bool validatePassword(string pwd);
 };
-
+//git
 #endif

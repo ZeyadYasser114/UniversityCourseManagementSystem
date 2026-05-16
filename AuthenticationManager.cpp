@@ -27,3 +27,4 @@ bool AuthenticationManager::registerProfessor(string professorID, string name, s
     cout << "Registering professor: " << name << " (ID: " << professorID << ")" << endl;
     return true;
 }
+//git

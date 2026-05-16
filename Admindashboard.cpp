@@ -512,5 +512,5 @@ void AdminDashboard::onAssignInstructorClicked() {
     assignStatus->setText("Instructor assigned successfully.");
     assignCourseID->clear(); assignProfID->clear();
 }
-
+//git
 void AdminDashboard::onLogout() { close(); }

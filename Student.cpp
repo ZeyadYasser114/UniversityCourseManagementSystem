@@ -84,3 +84,4 @@ void Student::setGPA(double v)              { gpa = v; }
 void Student::setBalance(double v)          { balance = v; }
 void Student::setScholarshipStatus(bool v)  { scholarshipStatus = v; }
 bool Student::validatePassword(string pwd)  { return password == pwd; }
+//git

@@ -28,5 +28,5 @@ private:
     static QString filePath();
     void seedDefaults();
 };
-
+//git
 #endif

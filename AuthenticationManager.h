@@ -13,4 +13,5 @@ public:
     bool registerStudent(string studentID, string name, string email, string password);
     bool registerProfessor(string professorID, string name, string email, string password, string department);
 };
+//git
 #endif

@@ -20,5 +20,5 @@ public:
     string getEmail();
     bool   validatePassword(string pwd);
 };
-
+//git
 #endif

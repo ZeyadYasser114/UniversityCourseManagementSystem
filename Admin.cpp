@@ -9,3 +9,4 @@ string Admin::getUsername()  { return username; }
 string Admin::getPassword()  { return password; }
 string Admin::getEmail()     { return email; }
 bool   Admin::validatePassword(string pwd) { return password == pwd; }
+//git

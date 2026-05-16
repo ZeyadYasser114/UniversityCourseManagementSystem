@@ -71,5 +71,5 @@ private:
 
     QPushButton *makeNavButton(const QString &text);
 };
-
+//git
 #endif
