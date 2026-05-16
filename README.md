@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="AIMS.png" alt="AIMS Logo" width="120"/>
+  <img src="AIMS.png" alt="AIMS Logo" width="400"/>
 </p>
 
 <h1 align="center">Academic Information Management System</h1>
