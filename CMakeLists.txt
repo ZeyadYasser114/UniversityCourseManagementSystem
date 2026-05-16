@@ -33,6 +33,7 @@ add_executable(UCMS
     Admindashboard.cpp
     Datastore.h
     datastore.h datastore.cpp
+
 )
 
 target_link_libraries(UCMS Qt6::Widgets Qt6::Core)
